@@ -8,6 +8,7 @@ const Home = () => {
       <Header title="our recipes" bgClass='bgimage'>
          <Button
            content="SEARCH RECIPES"
+           color='primary'
          />
       </Header>
     </div>

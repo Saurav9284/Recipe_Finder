@@ -1,6 +1,6 @@
 .bgimage {
     position: relative;
-    background: linear-gradient(rgba(8,8,8,0.3),rgba(8,8,8,0.3)),url('https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background: linear-gradient(rgba(8,8,8,0.5),rgba(8,8,8,0.5)),url('https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,4 +18,11 @@
     letter-spacing: 16px;
     text-transform: uppercase;
     font-size: 50px;
+    margin-bottom: 30px;
+}
+.navbarmenu {
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    font-size: medium;
 }

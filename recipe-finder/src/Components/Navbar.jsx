@@ -7,10 +7,10 @@ const Navbar = () => {
     <div>
       <Menu borderless fixed='top'>
         <Menu.Item>
-            <img src={logo} alt='logo' style={{width:80, cursor:'pointer'}}/>
+            <img src={logo} alt='logo' style={{width:50, cursor:'pointer'}}/>
         </Menu.Item>
-        <Menu.Item name='Home' style={{cursor:'pointer'}}/>
-        <Menu.Item name='Recipes' style={{cursor:'pointer'}}/>
+        <Menu.Item name='Home' className='navbarmenu' />
+        <Menu.Item name='Recipes' className='navbarmenu' />
       </Menu>
     </div>
   )
