@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
       <Header title="our recipes" bgClass='bgimage'>
-         <Button
+         <Button 
            content="SEARCH RECIPES"
            color='primary'
          />
