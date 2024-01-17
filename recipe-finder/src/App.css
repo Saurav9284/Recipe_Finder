@@ -23,7 +23,10 @@
 .navbarmenu {
     cursor: pointer;
     font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
     font-weight: bolder;
-    font-size: medium;
 }
 
+.footer {
+    background-color: rgb(28, 6, 6);
+}
