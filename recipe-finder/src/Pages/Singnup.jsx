@@ -1,14 +1,42 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { useState } from 'react'
+import {auth} from "../Firebase/firebase"
+import { createUserWithEmailAndPassword} from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
+function Signup () {
 
-const Signup = () => (
+  const [email, setEmail] = useState('');
+  const [password , setPassword] = useState('');
+  const [status, setStatus] = useState('');
+
+  const navigate = useNavigate();
+  const singnup = (e) => {
+     e.preventDefault();
+     if(!email||!password){
+      alert('Fill all details')
+     }
+     createUserWithEmailAndPassword(auth , email , password)
+     .then((userCredential)=>{
+      console.log(userCredential);
+      localStorage.setItem("email",email);
+      navigate('/login')
+     })
+     .catch((error)=>{
+      alert('User already exist')
+      console.log(error);
+     })
+  }
+ 
+
+  return (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='black' textAlign='center'>
          Create your account
       </Header>
-      <Form size='large'>
+    <Form size='large' onSubmit={singnup}>
         <Segment stacked>
         <Form.Input
             fluid
@@ -17,13 +45,16 @@ const Signup = () => (
             placeholder='Nmane'
             type='Name'
           />
-          <Form.Input fluid icon='at' iconPosition='left' placeholder='E-mail address' />
+          <Form.Input fluid icon='at' iconPosition='left' placeholder='E-mail address' value={email} onChange={(e)=>setEmail(e.target.value)}/>
           <Form.Input
             fluid
             icon='lock'
             iconPosition='left'
             placeholder='Password'
             type='password'
+            value={password}
+            onChange={(e)=>setPassword(e.target.value)}
+            
           />
           <Button color='green' fluid size='large'>
             Signup
@@ -36,5 +67,6 @@ const Signup = () => (
     </Grid.Column>
   </Grid>
 )
+}
 
 export default Signup
