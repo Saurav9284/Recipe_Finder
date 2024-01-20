@@ -22,14 +22,19 @@
 }
 .navbarmenu {
     cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
     font-weight: bolder;
-    color: white!important;
 }
 
+.navbarmenu a:hover
+{
+    color:coral;
+}
+
+
 .footer {
-    background-color: rgb(28, 6, 6);
+    background-color: rgb(14, 14, 14)
 }
 .loginMain{
     height: 100%;

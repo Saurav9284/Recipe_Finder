@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-      <Menu borderless fixed='top' style={{ backgroundColor: 'rgb(28, 6, 6)'}}>
+      <Menu borderless fixed='top' style={{ backgroundColor: 'rgb(255,255,255)'}}>
          <Menu.Item>
             <img src={logo} alt='logo' style={{width:50, cursor:'pointer'}} onClick={home}/>
          </Menu.Item>
