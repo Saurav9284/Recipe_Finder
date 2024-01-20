@@ -31,3 +31,17 @@
 .footer {
     background-color: rgb(28, 6, 6);
 }
+.loginMain{
+    height: 100%;
+    margin-top: 80px;
+    width: 100%;
+}
+.formdiv{
+    width: 50%;
+    margin: auto;
+    margin-left: 40%;
+}
+.link{
+    color: green;
+    font-weight: bolder;
+}
