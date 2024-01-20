@@ -13,7 +13,7 @@ const Navbar = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      setLoading(false); // Set loading to false once user information is fetched
+      setLoading(false); 
     });
 
     return () => unsubscribe();
