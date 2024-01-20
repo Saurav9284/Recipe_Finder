@@ -34,9 +34,6 @@ const Navbar = () => {
     navigate("/");
   };
 
-  const contact = () => {
-    navigate("/contact");
-  };
 
   const recipe = () => {
     navigate("/recipe");
@@ -97,7 +94,6 @@ const Navbar = () => {
           />
         )}
 
-        <MenuItem name="Admin" className="navbarmenu" onClick={contact} />
       </Menu>
     </div>
   );
