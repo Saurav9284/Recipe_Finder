@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import { Badge } from '@chakra-ui/react'
 
 const Contact = () => {
   return (
-    <div>
-      <h1>Contact Page</h1>
+    <div className="maincontact">
+    
+      <Badge ml='1' fontSize='0.8em' colorScheme='green'>
+    New
+  </Badge>
+      
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

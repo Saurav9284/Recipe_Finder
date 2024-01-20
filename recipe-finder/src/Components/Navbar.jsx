@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Menu, MenuItem, Input, MenuMenu,Button } from "semantic-ui-react";
+import { Menu, MenuItem, Input, MenuMenu, Popup } from "semantic-ui-react";
 import logo from "../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../Firebase/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { Avatar, AvatarBadge} from '@chakra-ui/react'
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -13,7 +14,7 @@ const Navbar = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      setLoading(false); 
+      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -70,7 +71,18 @@ const Navbar = () => {
           <MenuItem name="Loading..." className="navbarmenu" />
         ) : user ? (
           <>
-            <MenuItem name={`Welcome, ${user.email}`} className="navbarmenu" />
+          <MenuItem className="navbarmenu">
+          <Popup
+          trigger={<Avatar>
+            <AvatarBadge boxSize='1.25em' bg='green.500' />
+        </Avatar>}
+          content={`Welcome, ${user.email}`}
+          position='bottom center'
+        />
+          
+          </MenuItem>
+            
+            {/* <MenuItem name={`Welcome, ${user.email}`} className="navbarmenu" /> */}
             <MenuItem
               name="Logout"
               className="navbarmenu"
@@ -85,7 +97,7 @@ const Navbar = () => {
           />
         )}
 
-        <MenuItem name="Contact" className="navbarmenu" onClick={contact} />
+        <MenuItem name="Admin" className="navbarmenu" onClick={contact} />
       </Menu>
     </div>
   );
