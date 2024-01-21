@@ -4,7 +4,18 @@ import logo from "../Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../Firebase/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { Avatar, AvatarBadge} from '@chakra-ui/react'
+import { Avatar, AvatarBadge } from "@chakra-ui/react";
+import {
+  useDisclosure,
+  Button,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+} from "@chakra-ui/react";
+
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -20,6 +31,8 @@ const Navbar = () => {
     return () => unsubscribe();
   }, []);
 
+  
+
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -30,14 +43,17 @@ const Navbar = () => {
     }
   };
 
+
   const home = () => {
     navigate("/");
   };
 
-
   const recipe = () => {
     navigate("/recipe");
   };
+
+  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false });
+  const cancelRef = React.useRef();
 
   return (
     <div className="navbar">
@@ -64,36 +80,59 @@ const Navbar = () => {
         </MenuMenu>
 
         {loading ? (
-          // You can add a loading indicator here if needed
           <MenuItem name="Loading..." className="navbarmenu" />
         ) : user ? (
           <>
-          <MenuItem className="navbarmenu">
-          <Popup
-          trigger={<Avatar>
-            <AvatarBadge boxSize='1.25em' bg='green.500' />
-        </Avatar>}
-          content={`Welcome, ${user.email}`}
-          position='bottom center'
-        />
-          
-          </MenuItem>
+            <MenuItem className="navbarmenu">
+              <Popup
+                trigger={
+                  <Avatar>
+                    <AvatarBadge boxSize="1.25em" bg="green.500" />
+                  </Avatar>
+                }
+                content={`Welcome, ${user.email}`}
+                position="bottom center"
+              />
+            </MenuItem> 
             
-            {/* <MenuItem name={`Welcome, ${user.email}`} className="navbarmenu" /> */}
-            <MenuItem
-              name="Logout"
-              className="navbarmenu"
-              onClick={handleLogout}
-            />
-          </>
-        ) : (
-          <MenuItem
-            name="Login"
-            className="navbarmenu"
-            onClick={() => navigate("/login")}
-          />
-        )}
+              <MenuItem>
+                <Button colorScheme="red" onClick={() => onOpen()}>
+                  Logout
+                </Button>
+              </MenuItem>
 
+              <AlertDialog
+                isOpen={isOpen}
+                leastDestructiveRef={cancelRef}
+                onClose={onClose}
+              >
+                <AlertDialogOverlay>
+                  <AlertDialogContent>
+                    <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                      Logout your account
+                    </AlertDialogHeader>
+
+                    <AlertDialogBody>Are you sure?</AlertDialogBody>
+
+                    <AlertDialogFooter>
+                      <Button ref={cancelRef} onClick={onClose}>
+                        Cancel
+                      </Button>
+                      <Button colorScheme="red" onClick={handleLogout} ml={3}>
+                        Logout
+                      </Button>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialogOverlay>
+              </AlertDialog>
+            </>
+        ) : (
+          <MenuItem>
+            <Button colorScheme="green" onClick={() => navigate("/login")}>
+              Login
+            </Button>
+          </MenuItem>
+        )}
       </Menu>
     </div>
   );
