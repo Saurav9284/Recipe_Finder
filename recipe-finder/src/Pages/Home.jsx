@@ -8,7 +8,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const recipes = () => {
-    navigate('/recipe')
+    navigate('/recipes')
   }
   return (
     <div>

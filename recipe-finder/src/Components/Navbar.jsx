@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   const recipe = () => {
-    navigate("/recipe");
+    navigate("/recipes");
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false });
