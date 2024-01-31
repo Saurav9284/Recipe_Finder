@@ -4,6 +4,7 @@ import { useState } from 'react'
 import {auth} from "../Firebase/firebase"
 import { createUserWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { useToast } from '@chakra-ui/react'
 
 function Signup () {
 
@@ -11,6 +12,8 @@ function Signup () {
   const [password , setPassword] = useState('');
 
   const navigate = useNavigate();
+  const toast = useToast();
+
   const singnup = (e) => {
      e.preventDefault();
      if(!email||!password){
@@ -18,12 +21,26 @@ function Signup () {
      }
      createUserWithEmailAndPassword(auth , email , password)
      .then((userCredential)=>{
+      toast({
+        title: 'Signup Successfull.',
+        position: 'top',
+          description: "We've created account for you.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+      })
       console.log(userCredential);
       localStorage.setItem("email",email);
       navigate('/login')
      })
      .catch((error)=>{
-      alert('User already exist')
+      toast({
+        title: 'User alresdy exist.',
+        position: 'top',
+          status: 'warning',
+          duration: 9000,
+          isClosable: true,
+      })
       console.log(error);
      })
   }

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { auth} from '../Firebase/firebase'
 import { signInWithEmailAndPassword} from 'firebase/auth'
+import { useToast } from '@chakra-ui/react'
 
 
 function Login () {
@@ -11,6 +12,7 @@ function Login () {
   const [email, setEmail] = useState('');
   const [password , setPassword] = useState('');
   const navigate = useNavigate();
+  const toast = useToast();
 
   const login = (e) => {
      e.preventDefault();
@@ -19,12 +21,26 @@ function Login () {
      }
       signInWithEmailAndPassword(auth , email , password)
      .then((userCredential)=>{
+      toast({
+        title: 'Login Successfull.',
+        position: 'top',
+          description: "You've loged in to your account.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+      })
       console.log(userCredential);
       localStorage.setItem("email",email);
       navigate('/');
      })
      .catch((error)=>{
-      alert('Invalid Credentials')
+      toast({
+        title: 'Invalid Credentials.',
+        position: 'top',
+          status: 'warning',
+          duration: 9000,
+          isClosable: true,
+      })
       console.log(error);
      })
     }
